@@ -2,37 +2,58 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.guessed-states {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.guessed-states p {
+  width: 20%;
+}
+
+.app-body{
+  display: flex;
+  flex-direction: row;
+  padding:50px 20px;
+}
+
+.score-panel{
+  padding: 0px 10px;
+  width: 100%;
+  height: 100%;
+}
+
+.score-panel h2{
+  margin-top:0px;
+}
+
+.score-labels{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 12px;
+}
+
+.input-panel{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.app-content{
+  padding:0px 50px;
+}
+
+.status-message{
+  color:rgb(157, 14, 14);
+  height:20px;
+}
+
+
+.app-map{
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  width:100%;
 }

@@ -24,20 +24,27 @@ const offsets = {
   DC: [49, 21]
 };
 
-const MapChart = () => {
-  return (
-    <ComposableMap projection="geoAlbersUsa">
-      <Geographies geography={geoUrl}>
-        {({ geographies }) => (
-          <>
-            {geographies.map(geo => (
-              <Geography
-                key={geo.rsmKey}
-                stroke="#FFF"
-                geography={geo}
-                fill="#DDD"
-              />
-            ))}
+export const MapChart = ({ guessedStates }) => {
+    return (
+      <ComposableMap projection="geoAlbersUsa">
+        <Geographies geography={geoUrl}>
+          {({ geographies }) => (
+            <>
+              {geographies.map(geo => {
+                const cur = allStates.find(s => s.val === geo.id);
+                // Define fill color based on whether the state was guessed or not.
+                const fillColor = guessedStates.includes(cur?.id) ? "green" : "#DDD";
+                
+                return (
+                  <Geography
+                    key={geo.rsmKey}
+                    stroke="#FFF"
+                    geography={geo}
+                    fill={fillColor} // Use fill color here
+                  />
+                );
+              })}
+            const fillColor = guessedStates.includes(cur?.id) ? "green" : "#DDD";
             {geographies.map(geo => {
               const centroid = geoCentroid(geo);
               const cur = allStates.find(s => s.val === geo.id);

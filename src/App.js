@@ -103,7 +103,7 @@ function App() {
   
 
   return (
-    <div>
+    <div className="App">
       <div className="app-map">
         <MapChart guessedStates={guessedStates.map(state => stateAbbreviations[state])} />
       </div>

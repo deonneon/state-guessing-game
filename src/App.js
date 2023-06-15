@@ -32,6 +32,11 @@ function App() {
   const [isRunning, setIsRunning] = useState(false);
   const [timerId, setTimerId] = useState(null);
   const [scores, setScores] = useState([]);
+  const [easyMode, setEasyMode] = useState(false);
+
+  const handleEasyModeToggle = () => {
+    setEasyMode(!easyMode);
+  };
 
   const handleChange = (event) => {
     setGuess(event.target.value);
@@ -105,7 +110,7 @@ function App() {
   return (
     <div className="App">
       <div className="app-map">
-        <MapChart guessedStates={guessedStates.map(state => stateAbbreviations[state])} />
+        <MapChart guessedStates={guessedStates.map(state => stateAbbreviations[state])} easyMode={easyMode} />
       </div>
       <div className="app-body">
         <div className="app-content">
@@ -120,6 +125,12 @@ function App() {
             <div>
               Time left: {Math.floor(timeLeft / 60)}:{('0' + timeLeft % 60).slice(-2)}
             </div>
+            </div>
+            <div className="toggle-easy">
+              <label>
+                    <input type="checkbox" checked={easyMode} onChange={handleEasyModeToggle} />
+                    Easy Mode
+              </label>
             </div>
             <p className="status-message">{message}</p>
             <div className="guessed-states">

@@ -66,7 +66,8 @@
 }
 
 .game-description{
-  height:80px;
+  height:50px;
+  font-weight: 200;
 }
 
 .form-quiz input[type='text']{
@@ -81,4 +82,9 @@
 .form-quiz button{
   height: 30px;
   margin-left: 5px;
+}
+
+.toggle-easy{
+  text-align: left;
+  margin:10px;
 }

@@ -109,8 +109,9 @@ function App() {
       </div>
       <div className="app-body">
         <div className="app-content">
+          <div className="game-description">State Sprint: Are you ready to put your US geography skills to the test? In this high-states race against time, your goal is to list as many states as possible within the given time limit. </div>
           <div className="input-panel">
-            <form onSubmit={handleSubmit}>
+            <form className="form-quiz" onSubmit={handleSubmit}>
               <input type="text" value={guess} onChange={handleChange} />
               <input type="submit" value="Submit" />
               <button onClick={handleStop}>Stop</button>
@@ -123,13 +124,13 @@ function App() {
             <p className="status-message">{message}</p>
             <div className="guessed-states">
               {states.map((state, index) => (
-                  <p key={index}>{guessedStates.includes(state) ? state : '_________'}</p>
+                  <p key={index}>{guessedStates.includes(state) ? state : '___________'}</p>
               ))}
           </div>
           <p>{50 - guessedStates.length} states left</p>
         </div>
         <div className="score-panel">
-          <h2>Previous Scores</h2>
+          <h3>Previous Scores</h3>
           <div className="score-labels">
             <p>Time Spent</p>
             <p>States Guessed</p>

@@ -33,6 +33,11 @@ function App() {
   const [timerId, setTimerId] = useState(null);
   const [scores, setScores] = useState([]);
   const [easyMode, setEasyMode] = useState(false);
+  const [reveal, setReveal] = useState(false);
+
+  const handleReveal = () => {
+      setReveal(true);
+  };
 
   const handleEasyModeToggle = () => {
     setEasyMode(!easyMode);
@@ -110,7 +115,7 @@ function App() {
   return (
     <div className="App">
       <div className="app-map">
-        <MapChart guessedStates={guessedStates.map(state => stateAbbreviations[state])} easyMode={easyMode} />
+      <MapChart guessedStates={guessedStates.map(state => stateAbbreviations[state])} easyMode={easyMode} reveal={reveal} />
       </div>
       <div className="app-body">
         <div className="app-content">
@@ -121,6 +126,7 @@ function App() {
               <input type="submit" value="Submit" />
               <button onClick={handleStop}>Stop</button>
               <button onClick={handleReset}>Reset</button>
+              <button onClick={handleReveal}>Reveal</button>
             </form>
             <div>
               Time left: {Math.floor(timeLeft / 60)}:{('0' + timeLeft % 60).slice(-2)}
@@ -134,10 +140,18 @@ function App() {
             </div>
             <p className="status-message">{message}</p>
             <div className="guessed-states">
-              {states.map((state, index) => (
-                  <p key={index}>{guessedStates.includes(state) ? state : '___________'}</p>
-              ))}
-          </div>
+              {states.map((state, index) => {
+                const isGuessed = guessedStates.includes(state);
+                const displayText = reveal ? state : (isGuessed ? state : '_________');
+                const displayColor = reveal && !isGuessed ? 'red' : 'black';
+
+                return (
+                  <p key={index} style={{ color: displayColor }}>
+                    {displayText}
+                  </p>
+                );
+              })}
+            </div>
           <p>{50 - guessedStates.length} states left</p>
         </div>
         <div className="score-panel">

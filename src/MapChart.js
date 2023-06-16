@@ -25,7 +25,7 @@ const offsets = {
 };
 
 // Get easyMode from the props
-export const MapChart = ({ guessedStates, easyMode }) => {
+export const MapChart = ({ guessedStates, easyMode, reveal }) => {
     return (
         <ComposableMap projection="geoAlbersUsa">
             <Geographies geography={geoUrl}>
@@ -33,7 +33,16 @@ export const MapChart = ({ guessedStates, easyMode }) => {
                     <>
                         {geographies.map(geo => {
                             const cur = allStates.find(s => s.val === geo.id);
-                            const fillColor = guessedStates.includes(cur?.id) ? "green" : "#DDD";
+
+                            // Decide the fill color based on guessedStates and reveal
+                            let fillColor;
+                            if (guessedStates.includes(cur?.id)) {
+                                fillColor = "green";
+                            } else if (reveal) {
+                                fillColor = "red";
+                            } else {
+                                fillColor = "#DDD";
+                            }
 
                             return (
                                 <Geography

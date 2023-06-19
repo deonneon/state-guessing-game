@@ -85,6 +85,7 @@ function App() {
 
   const handleStop = () => {
     setIsRunning(false);
+    setMessage(''); 
     setScores([...scores, { time: formatTime(600 - timeLeft), states: guessedStates.length }]);
   }
 
@@ -94,6 +95,7 @@ function App() {
     setGuessedStates([]);
     setGuess('');
     setMessage('');
+    setGuessedStates([]);
     setScores([...scores, { time: formatTime(600 - timeLeft), states: guessedStates.length }]);
   }
 
@@ -124,8 +126,8 @@ function App() {
             <form className="form-quiz" onSubmit={handleSubmit}>
               <input type="text" value={guess} onChange={handleChange} />
               <input type="submit" value="Submit" />
-              <button onClick={handleStop}>Stop</button>
-              <button onClick={handleReset}>Reset</button>
+              <button type="button" onClick={handleStop}>Stop</button>
+              <button type="button" onClick={handleReset}>Reset</button>
               <button onClick={handleReveal}>Reveal</button>
             </form>
             <div>

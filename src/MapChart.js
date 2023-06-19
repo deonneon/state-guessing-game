@@ -21,7 +21,6 @@ const offsets = {
   NJ: [34, 1],
   DE: [33, 0],
   MD: [47, 10],
-  DC: [49, 21]
 };
 
 // Get easyMode from the props
@@ -65,7 +64,8 @@ export const MapChart = ({ guessedStates, easyMode, reveal }) => {
                                     (Object.keys(offsets).indexOf(cur.id) === -1 ? (
                                         <Marker coordinates={centroid}>
                                             <text y="2" fontSize={14} textAnchor="middle">
-                                                {easyMode && cur.id}
+                                                {/* If the current state has not been guessed, display the abbreviation */}
+                                                {easyMode && !guessedStates.includes(cur.id) && cur.id !== 'DC' && cur.id}
                                             </text>
                                         </Marker>
                                     ) : (
@@ -75,7 +75,8 @@ export const MapChart = ({ guessedStates, easyMode, reveal }) => {
                                             dy={offsets[cur.id][1]}
                                         >
                                             <text x={4} fontSize={14} alignmentBaseline="middle">
-                                                {easyMode && cur.id}
+                                                {/* If the current state has not been guessed, display the abbreviation */}
+                                                {easyMode && !guessedStates.includes(cur.id) && cur.id !== 'DC' && cur.id}
                                             </text>
                                         </Annotation>
                                     ))}

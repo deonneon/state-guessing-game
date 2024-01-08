@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+# State Sprint: Guess the States!
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the State Sprint app! This exciting, interactive game challenges you to name as many U.S. states as possible against the clock. Whether you're a geography guru or just looking to test your knowledge, State Sprint offers a fun and educational experience for everyone!
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Interactive Map**: Visualize your progress on a dynamic map of the U.S. as you guess each state.
+- **Timer Challenge**: Race against a countdown timer to push your memory to its limits.
+- **Easy Mode**: Toggle on Easy Mode for hints on state abbreviations.
+- **Score Tracking**: Keep track of your past attempts and scores to monitor your improvement over time.
+- **Reveal Function**: Stuck? Use the reveal function to see the states you missed.
 
-### `npm start`
+## Getting Started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. **Clone the Repository**: `git clone [repository-url]`
+2. **Install Dependencies**: Run `npm install` in the project directory.
+3. **Start the App**: Execute `npm start` to launch the app in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Game Play
 
-### `npm test`
+- **Start Game**: Simply start typing a state name. The timer begins as soon as you start.
+- **Submit Guess**: Press 'Submit' to check your guess.
+- **Stop and Reset**: You can stop the game or reset it to start over at any time.
+- **Easy Mode**: Toggle this mode for visual hints on the map.
+- **Reveal States**: Use this function to reveal the states you couldn't guess.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Technologies
 
-### `npm run build`
+- React: For building the user interface.
+- D3-Geo & React-Simple-Maps: For rendering the interactive map.
+- CSS: For styling the components.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Contribution
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Want to contribute? Great! You can add new features, fix bugs, or improve the documentation. Just fork the repo, make your updates, and submit a pull request.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## License
 
-### `npm run eject`
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Happy State Sprinting! 🌎✨
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+_Note: Modify the repository URL and LICENSE.md as needed._

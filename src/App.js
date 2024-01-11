@@ -201,9 +201,11 @@ function App() {
   };
 
   const handleStop = () => {
-    setIsRunning(false);
-    setMessage("");
-    updateScores();
+    if (isRunning) {
+      setIsRunning(false);
+      setMessage("");
+      updateScores();
+    }
   };
 
   const handleReset = () => {

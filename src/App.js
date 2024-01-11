@@ -124,6 +124,60 @@ function App() {
   const [easyMode, setEasyMode] = useState(false);
   const [reveal, setReveal] = useState(false);
 
+  useEffect(() => {
+    // Set the guessedStates for debugging
+    setGuessedStates([
+      "Alabama",
+      "Alaska",
+      "Arizona",
+      "Arkansas",
+      "California",
+      "Colorado",
+      "Connecticut",
+      "Delaware",
+      "Florida",
+      "Georgia",
+      "Hawaii",
+      "Idaho",
+      "Illinois",
+      "Indiana",
+      "Iowa",
+      "Kansas",
+      "Kentucky",
+      "Louisiana",
+      "Maine",
+      "Maryland",
+      "Massachusetts",
+      "Michigan",
+      "Minnesota",
+      "Mississippi",
+      "Missouri",
+      "Montana",
+      "Nebraska",
+      "Nevada",
+      "New Hampshire",
+      "New Jersey",
+      "New Mexico",
+      "New York",
+      "North Carolina",
+      "North Dakota",
+      "Ohio",
+      "Oklahoma",
+      "Oregon",
+      "Pennsylvania",
+      "Rhode Island",
+      "South Carolina",
+      "South Dakota",
+      "Tennessee",
+      "Texas",
+      "Utah",
+      "Vermont",
+      "Virginia",
+      "Washington",
+      "West Virginia",
+    ]);
+  }, []);
+
   const handleReveal = () => {
     setReveal(true);
   };
@@ -236,6 +290,9 @@ function App() {
               className="progress"
               style={{ width: `${(guessedStates.length / 50) * 100}%` }}
             ></div>
+            <div className="text-container">
+              <p>{50 - guessedStates.length} states left</p>
+            </div>
           </div>
           <div className="game-description">
             State Sprint: Are you ready to put your US geography skills to the
@@ -287,7 +344,6 @@ function App() {
               );
             })}
           </div>
-          <p>{50 - guessedStates.length} states left</p>
         </div>
         <div className="score-panel">
           <h3>Previous Scores</h3>

@@ -90,10 +90,21 @@
 }
 
 .progress-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
   background-color: #e0e0e0;
   border-radius: 8px;
   margin: 10px 0;
+}
+
+.progress-bar {
+  position: relative; /* Relative positioning for the container */
+  width: 100%;
+  background-color: #e0e0e0;
+  border-radius: 8px;
+  margin: 8px 0;
 }
 
 .progress {
@@ -101,4 +112,15 @@
   background-color: #4caf50;
   border-radius: 8px;
   transition: width 0.5s;
+}
+
+.text-container {
+  position: absolute; /* Absolute positioning for the text */
+  right: 10px; /* Adjust as needed for spacing */
+  top: 50%;
+  transform: translateY(-50%); /* Center vertically */
+  margin: 0;
+  margin-right: 10px; /* Adjust spacing as needed */
+  font-size: 0.9em;
+  color: #3c4142;
 }

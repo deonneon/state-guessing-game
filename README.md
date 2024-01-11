@@ -9,6 +9,7 @@ To dos:
 
 - [ ] Implement a leaderboard or save high scores using local storage or a backend service.
 - [ ] Add a mode where states light up and the user has to type their name.
+- [ ] Add mobile design. Currently isn't responsive to mobile. 
 
 ## Features
 

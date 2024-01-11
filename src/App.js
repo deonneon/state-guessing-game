@@ -193,13 +193,17 @@ function App() {
     return () => clearTimeout(id);
   }, [timeLeft, isRunning, guessedStates.length]);
 
-  const handleStop = () => {
-    setIsRunning(false);
-    setMessage("");
+  const updateScores = () => {
     setScores([
       ...scores,
       { time: formatTime(600 - timeLeft), states: guessedStates.length },
     ]);
+  };
+
+  const handleStop = () => {
+    setIsRunning(false);
+    setMessage("");
+    updateScores();
   };
 
   const handleReset = () => {
@@ -209,10 +213,7 @@ function App() {
     setGuess("");
     setMessage("");
     setGuessedStates([]);
-    setScores([
-      ...scores,
-      { time: formatTime(600 - timeLeft), states: guessedStates.length },
-    ]);
+    updateScores();
   };
 
   return (

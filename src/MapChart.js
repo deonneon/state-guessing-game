@@ -25,6 +25,8 @@ const offsets = {
 
 // Get easyMode from the props
 export const MapChart = ({ guessedStates, easyMode, reveal }) => {
+  const guessedSet = new Set(guessedStates);
+
   return (
     <ComposableMap projection="geoAlbersUsa">
       <Geographies geography={geoUrl}>
@@ -34,9 +36,8 @@ export const MapChart = ({ guessedStates, easyMode, reveal }) => {
               const cur = allStates.find((s) => s.val === geo.id);
               const centroid = geoCentroid(geo);
 
-              // Decide the fill color based on guessedStates and reveal
               let fillColor;
-              if (guessedStates.includes(cur?.id)) {
+              if (guessedSet.has(cur?.id)) {
                 fillColor = "green";
               } else if (reveal) {
                 fillColor = "red";
@@ -51,13 +52,13 @@ export const MapChart = ({ guessedStates, easyMode, reveal }) => {
                     easyMode &&
                     centroid[0] > -160 &&
                     centroid[0] < -67 &&
+                    !guessedSet.has(cur.id) &&
+                    cur.id !== "DC" &&
+                    // Decide between Marker or Annotation based on offset
                     (Object.keys(offsets).indexOf(cur.id) === -1 ? (
                       <Marker coordinates={centroid}>
                         <text y="2" fontSize={14} textAnchor="middle">
-                          {easyMode &&
-                            !guessedStates.includes(cur.id) &&
-                            cur.id !== "DC" &&
-                            cur.id}
+                          {cur.id}
                         </text>
                       </Marker>
                     ) : (
@@ -67,10 +68,7 @@ export const MapChart = ({ guessedStates, easyMode, reveal }) => {
                         dy={offsets[cur.id][1]}
                       >
                         <text x={4} fontSize={14} alignmentBaseline="middle">
-                          {easyMode &&
-                            !guessedStates.includes(cur.id) &&
-                            cur.id !== "DC" &&
-                            cur.id}
+                          {cur.id}
                         </text>
                       </Annotation>
                     ))}

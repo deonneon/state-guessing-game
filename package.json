@@ -1,7 +1,7 @@
 {
   "name": "code-quiz",
   "version": "0.1.0",
-  "homepage": "https://deonneon.github.io/code-quiz",
+  "homepage": "https://deonneon.github.io/state-guessing-game",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",

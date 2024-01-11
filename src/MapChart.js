@@ -5,7 +5,7 @@ import {
   Geographies,
   Geography,
   Marker,
-  Annotation
+  Annotation,
 } from "react-simple-maps";
 
 import allStates from "./states2.json";
@@ -25,69 +25,63 @@ const offsets = {
 
 // Get easyMode from the props
 export const MapChart = ({ guessedStates, easyMode, reveal }) => {
-    return (
-        <ComposableMap projection="geoAlbersUsa">
-            <Geographies geography={geoUrl}>
-                {({ geographies }) => (
-                    <>
-                        {geographies.map(geo => {
-                            const cur = allStates.find(s => s.val === geo.id);
+  return (
+    <ComposableMap projection="geoAlbersUsa">
+      <Geographies geography={geoUrl}>
+        {({ geographies }) => (
+          <>
+            {geographies.map((geo) => {
+              const cur = allStates.find((s) => s.val === geo.id);
+              const centroid = geoCentroid(geo);
 
-                            // Decide the fill color based on guessedStates and reveal
-                            let fillColor;
-                            if (guessedStates.includes(cur?.id)) {
-                                fillColor = "green";
-                            } else if (reveal) {
-                                fillColor = "red";
-                            } else {
-                                fillColor = "#DDD";
-                            }
+              // Decide the fill color based on guessedStates and reveal
+              let fillColor;
+              if (guessedStates.includes(cur?.id)) {
+                fillColor = "green";
+              } else if (reveal) {
+                fillColor = "red";
+              } else {
+                fillColor = "#DDD";
+              }
 
-                            return (
-                                <Geography
-                                    key={geo.rsmKey}
-                                    stroke="#FFF"
-                                    geography={geo}
-                                    fill={fillColor}
-                                />
-                            );
-                        })}
-                        {geographies.map(geo => {
-                            const centroid = geoCentroid(geo);
-                            const cur = allStates.find(s => s.val === geo.id);
-                            return (
-                                <g key={geo.rsmKey + "-name"}>
-                                    {cur &&
-                                    easyMode &&
-                                    centroid[0] > -160 &&
-                                    centroid[0] < -67 &&
-                                    (Object.keys(offsets).indexOf(cur.id) === -1 ? (
-                                        <Marker coordinates={centroid}>
-                                            <text y="2" fontSize={14} textAnchor="middle">
-                                                {/* If the current state has not been guessed, display the abbreviation */}
-                                                {easyMode && !guessedStates.includes(cur.id) && cur.id !== 'DC' && cur.id}
-                                            </text>
-                                        </Marker>
-                                    ) : (
-                                        <Annotation
-                                            subject={centroid}
-                                            dx={offsets[cur.id][0]}
-                                            dy={offsets[cur.id][1]}
-                                        >
-                                            <text x={4} fontSize={14} alignmentBaseline="middle">
-                                                {/* If the current state has not been guessed, display the abbreviation */}
-                                                {easyMode && !guessedStates.includes(cur.id) && cur.id !== 'DC' && cur.id}
-                                            </text>
-                                        </Annotation>
-                                    ))}
-                                </g>
-                            );
-                        })}
-                    </>
-                )}
-            </Geographies>
-        </ComposableMap>
-    );
+              return (
+                <React.Fragment key={geo.rsmKey}>
+                  <Geography stroke="#FFF" geography={geo} fill={fillColor} />
+                  {cur &&
+                    easyMode &&
+                    centroid[0] > -160 &&
+                    centroid[0] < -67 &&
+                    (Object.keys(offsets).indexOf(cur.id) === -1 ? (
+                      <Marker coordinates={centroid}>
+                        <text y="2" fontSize={14} textAnchor="middle">
+                          {easyMode &&
+                            !guessedStates.includes(cur.id) &&
+                            cur.id !== "DC" &&
+                            cur.id}
+                        </text>
+                      </Marker>
+                    ) : (
+                      <Annotation
+                        subject={centroid}
+                        dx={offsets[cur.id][0]}
+                        dy={offsets[cur.id][1]}
+                      >
+                        <text x={4} fontSize={14} alignmentBaseline="middle">
+                          {easyMode &&
+                            !guessedStates.includes(cur.id) &&
+                            cur.id !== "DC" &&
+                            cur.id}
+                        </text>
+                      </Annotation>
+                    ))}
+                </React.Fragment>
+              );
+            })}
+          </>
+        )}
+      </Geographies>
+    </ComposableMap>
+  );
 };
 
 export default MapChart;

@@ -120,7 +120,6 @@ function App() {
   const [message, setMessage] = useState("");
   const [timeLeft, setTimeLeft] = useState(600);
   const [isRunning, setIsRunning] = useState(false);
-  const [timerId, setTimerId] = useState(null);
   const [scores, setScores] = useState([]);
   const [easyMode, setEasyMode] = useState(false);
   const [reveal, setReveal] = useState(false);
@@ -184,14 +183,15 @@ function App() {
       setIsRunning(false);
       if (timeLeft === 0) {
         setMessage("Time is over!");
-        setScores([
+        // Using a functional update for 'setScores'
+        setScores((scores) => [
           ...scores,
           { time: formatTime(600 - timeLeft), states: guessedStates.length },
         ]);
       }
     }
     return () => clearTimeout(id);
-  }, [timeLeft, isRunning]);
+  }, [timeLeft, isRunning, guessedStates.length]);
 
   const handleStop = () => {
     setIsRunning(false);

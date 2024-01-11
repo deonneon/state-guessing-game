@@ -61,8 +61,8 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  max-width: 600px;
-  height: 400px;
+  max-width: 800px;
+  height: 35vh;
 }
 
 .game-description {

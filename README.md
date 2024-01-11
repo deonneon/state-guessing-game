@@ -3,7 +3,7 @@
 Welcome to the State Sprint app! This exciting, interactive game challenges you to name as many U.S. states as possible against the clock. Whether you're a geography guru or just looking to test your knowledge, State Sprint offers a fun and educational experience for everyone!
 
 Works best on Chrome for now. Safari doesn't seem to render the graphics properly.
-[Link to game](https://deonneon.github.io/code-quiz/)
+[Link to game](https://deonstatequiz.netlify.app/)
 
 To dos:
 

@@ -194,11 +194,18 @@ function App() {
   }, [timeLeft, isRunning, guessedStates.length]);
 
   const updateScores = () => {
-    setScores([
+    const newScores = [
       ...scores,
       { time: formatTime(600 - timeLeft), states: guessedStates.length },
-    ]);
+    ];
+    setScores(newScores);
+    localStorage.setItem("scores", JSON.stringify(newScores));
   };
+
+  useEffect(() => {
+    const loadedScores = JSON.parse(localStorage.getItem("scores")) || [];
+    setScores(loadedScores);
+  }, []);
 
   const handleStop = () => {
     if (isRunning) {
@@ -215,7 +222,6 @@ function App() {
     setGuess("");
     setMessage("");
     setGuessedStates([]);
-    updateScores();
   };
 
   return (
@@ -255,7 +261,9 @@ function App() {
               <button type="button" onClick={handleReset}>
                 Reset
               </button>
-              <button onClick={handleReveal}>Reveal</button>
+              <button type="button" onClick={handleReveal}>
+                Reveal
+              </button>
             </form>
             <div>
               Time left: {Math.floor(timeLeft / 60)}:

@@ -141,8 +141,11 @@ function App() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    const trimmedGuess = guess.trim();
     if (
-      states.map((state) => state.toLowerCase()).includes(guess.toLowerCase())
+      states
+        .map((state) => state.toLowerCase())
+        .includes(trimmedGuess.toLowerCase())
     ) {
       if (
         !guessedStates
@@ -305,6 +308,7 @@ function App() {
               value={guess}
               placeholder="Enter a state to start"
               onChange={handleChange}
+              autoComplete="off"
             />
           </div>
 

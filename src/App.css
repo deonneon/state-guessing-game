@@ -1,19 +1,92 @@
-.App {
-  text-align: center;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-@media screen and (max-width: 768px) {
-  .App {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.App {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Full viewport height */
+}
+
+.main-column {
+  display: flex;
+  flex-direction: row;
+  height: 80%; /* 80% of the viewport height */
+  justify-content: space-between;
+  padding: 2% 3% 0% 5%;
+}
+
+@media screen and (max-height: 700px) {
+  .main-column {
+    padding-top: 5px;
   }
+}
+
+.app-map,
+.app-body {
+  width: 50%; /* Each takes up half the width */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.app-body {
+  flex-direction: row;
+  padding-top: 3%;
+  overflow: hidden;
+  height: auto;
+}
+
+@media screen and (max-height: 700px) {
+  .app-body {
+    padding-top: 1%;
+  }
+}
+
+.input-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20%; /* 20% of the viewport height */
+}
+
+/* New media query for screens less than 768px */
+@media screen and (max-width: 768px) {
+  .input-panel {
+    position: fixed; /* Fix position to the viewport */
+    bottom: 0; /* Align to the bottom */
+    left: 0; /* Align to the left */
+    width: 100%; /* Full width */
+    z-index: 1000; /* Adjust if needed to bring above other elements */
+    background-color: white;
+  }
+}
+
+/* Adjustments for smaller screens */
+@media screen and (max-width: 768px) {
+  .main-column {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .app-map,
+  .app-body {
+    width: 100%;
+  }
+
+  .input-panel {
+    height: 15%;
+    flex-direction: column;
+  }
+}
+
+.app-content {
+  padding: 0px 2vw 0px 4vw;
 }
 
 .guessed-states {
@@ -24,12 +97,13 @@
 
 .guessed-states p {
   width: 20%;
-  padding-bottom: 0.4em;
+  padding-bottom: 2.2vh;
+  font-size: 0.7em;
 }
 
 @media screen and (max-width: 1260px) {
   .guessed-states p {
-    width: 20%;
+    width: 25%;
     overflow: hidden;
     font-size: 0.8em;
   }
@@ -37,31 +111,19 @@
 
 @media screen and (max-width: 900px) {
   .guessed-states p {
-    width: 25%;
-    font-size: 0.5em;
+    width: 33.33%;
+    font-size: 0.6em;
   }
 }
 
 @media screen and (max-width: 768px) {
   .guessed-states p {
-    width: 20%;
-    font-size: 0.5em;
+    width: 25%;
+    font-size: 0.9em;
+    padding-bottom: 0.5vh;
   }
-}
-
-.app-body {
-  display: flex;
-  flex-direction: row;
-  padding: 50px 20px;
-  max-width: 50vw;
-}
-
-@media screen and (max-width: 768px) {
-  .app-body {
-    display: flex;
-    flex-direction: row;
-    padding: 0 0;
-    max-width: 80vw;
+  .app-content {
+    padding: 0px 1vw 0px 1vw;
   }
 }
 
@@ -87,11 +149,8 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 20px 10px 0px 10px;
-}
-
-.app-content {
-  padding: 0px 50px;
+  align-content: center;
+  padding: 0% 5%;
 }
 
 .status-message {
@@ -99,27 +158,10 @@
   height: 20px;
 }
 
-.app-map {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  max-width: 50vw;
-  flex-direction: column;
-  padding-left: 5vw;
-  padding-top: 5vh;
-}
-
-@media screen and (max-width: 768px) {
-  .app-map {
-    padding-left: 0;
-    padding-top: 5vh;
-    max-width: 70vw;
-  }
-}
-
 .game-description {
-  height: 50px;
   font-weight: 200;
+  font-size: 17px;
+  padding-bottom: 10px;
 }
 
 @media screen and (max-width: 900px) {
@@ -128,33 +170,57 @@
   }
 }
 
+.form-quiz {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
 .form-quiz input[type="text"] {
   height: 25px;
+  width: 45vw;
+  margin-right: 4vw;
 }
 
-.form-quiz input[type="submit"] {
-  height: 30px;
-  margin-left: 5px;
-}
-
+.form-quiz input[type="submit"],
 .form-quiz button {
   height: 30px;
   margin-left: 5px;
 }
 
-.toggle-easy {
-  text-align: left;
-  margin: 10px;
+@media screen and (max-width: 900px) {
+  .form-quiz input[type="text"] {
+    margin-right: 0;
+  }
 }
 
-.progress-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  background-color: #e0e0e0;
-  border-radius: 8px;
+@media screen and (max-width: 768px) {
+  .form-quiz {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+  }
+
+  .form-quiz div {
+    padding-bottom: 10px;
+  }
+
+  .form-quiz input[type="text"] {
+    width: 90vw;
+  }
+
+  .form-quiz input[type="submit"],
+  .form-quiz button {
+    height: 30px;
+    margin-right: 5px;
+    margin-left: 0;
+  }
+}
+
+.toggle-easy {
+  text-align: left;
   margin: 10px 0;
+  color: rgb(101, 99, 99);
 }
 
 .progress-bar {
@@ -162,7 +228,7 @@
   width: 100%;
   background-color: #e0e0e0;
   border-radius: 8px;
-  margin: 8px 0;
+  margin: 15px 0;
 }
 
 .progress {
@@ -181,4 +247,16 @@
   margin-right: 10px; /* Adjust spacing as needed */
   font-size: 0.9em;
   color: #3c4142;
+}
+
+.form2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.time-container {
+  width: 120px;
 }

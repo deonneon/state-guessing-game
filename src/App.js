@@ -222,96 +222,111 @@ function App() {
     setGuess("");
     setMessage("");
     setGuessedStates([]);
+    setReveal(false);
   };
 
   return (
     <div className="App">
-      <div className="app-map">
-        <MapChart
-          guessedStates={guessedStates.map(
-            (state) => stateAbbreviations[state]
-          )}
-          easyMode={easyMode}
-          reveal={reveal}
-        />
-        <div className="progress-bar">
-          <div
-            className="progress"
-            style={{ width: `${(guessedStates.length / 50) * 100}%` }}
-          ></div>
-          <div className="text-container">
-            <p>{50 - guessedStates.length} states left</p>
-          </div>
-        </div>
-        <div className="game-description">
-          State Sprint: Are you ready to put your US geography skills to the
-          test? In this high-states race against time, your goal is to list as
-          many states as possible within the given time limit.{" "}
-        </div>
-        <div className="input-panel">
-          <form className="form-quiz" onSubmit={handleSubmit}>
-            <input type="text" value={guess} onChange={handleChange} />
-            <input type="submit" value="Submit" />
-            <button type="button" onClick={handleStop}>
-              Stop
-            </button>
-            <button type="button" onClick={handleReset}>
-              Reset
-            </button>
-            <button type="button" onClick={handleReveal}>
-              Reveal
-            </button>
-          </form>
-          <div>
-            Time left: {Math.floor(timeLeft / 60)}:
-            {("0" + (timeLeft % 60)).slice(-2)}
-          </div>
-        </div>
-        <div className="toggle-easy">
-          <label>
-            <input
-              type="checkbox"
-              checked={easyMode}
-              onChange={handleEasyModeToggle}
-            />
-            Easy Mode
-          </label>
-        </div>
-        <p className="status-message">{message}</p>
-      </div>
-      <div className="app-body">
-        <div className="app-content">
-          <div className="guessed-states">
-            {states.map((state, index) => {
-              const isGuessed = guessedStates.includes(state);
-              const displayText = reveal
-                ? state
-                : isGuessed
-                ? state
-                : "_________";
-              const displayColor = reveal && !isGuessed ? "red" : "black";
-
-              return (
-                <p key={index} style={{ color: displayColor }}>
-                  {displayText}
-                </p>
-              );
-            })}
-          </div>
-        </div>
-        <div className="score-panel">
-          <h3>Previous Scores</h3>
-          <div className="score-labels">
-            <p>Time Spent</p>
-            <p>States Guessed</p>
-          </div>
-          {scores.map((score, index) => (
-            <div key={index} className="score-labels">
-              <span>{score.time}</span>
-              <span>{score.states}</span>
+      <div className="main-column">
+        <div className="app-map">
+          <MapChart
+            guessedStates={guessedStates.map(
+              (state) => stateAbbreviations[state]
+            )}
+            easyMode={easyMode}
+            reveal={reveal}
+          />
+          <div className="progress-bar">
+            <div
+              className="progress"
+              style={{ width: `${(guessedStates.length / 50) * 100}%` }}
+            ></div>
+            <div className="text-container">
+              <p>{50 - guessedStates.length} states left</p>
             </div>
-          ))}
+          </div>
+          <div className="game-description">
+            State Sprint: Are you ready to put your US geography skills to the
+            test? In this high-states race against time, your goal is to list as
+            many states as possible within the given time limit.{" "}
+          </div>
+          <div className="toggle-easy">
+            <label>
+              <input
+                type="checkbox"
+                checked={easyMode}
+                onChange={handleEasyModeToggle}
+              />
+              Easy Mode
+            </label>
+          </div>
+          <p className="status-message">{message}</p>
         </div>
+        <div className="app-body">
+          <div className="app-content">
+            <div className="guessed-states">
+              {states.map((state, index) => {
+                const isGuessed = guessedStates.includes(state);
+                const displayText = reveal
+                  ? state
+                  : isGuessed
+                  ? state
+                  : "_________";
+                const displayColor = reveal && !isGuessed ? "red" : "black";
+
+                return (
+                  <p key={index} style={{ color: displayColor }}>
+                    {displayText}
+                  </p>
+                );
+              })}
+            </div>
+          </div>
+          <div className="score-panel">
+            <h3>Previous Scores</h3>
+            <div className="score-labels">
+              <p>Time Spent</p>
+              <p>States Guessed</p>
+            </div>
+            {scores.map((score, index) => (
+              <div key={index} className="score-labels">
+                <span>{score.time}</span>
+                <span>{score.states}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="input-panel">
+        <form className="form-quiz" onSubmit={handleSubmit}>
+          <div>
+            <input
+              type="text"
+              value={guess}
+              placeholder="Enter a state to start"
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="form2">
+            <div>
+              <input type="submit" value="Submit" />
+              <button type="button" onClick={handleStop}>
+                Stop
+              </button>
+              <button type="button" onClick={handleReset}>
+                Reset
+              </button>
+              <button type="button" onClick={handleReveal}>
+                Reveal
+              </button>
+            </div>
+            <div className="time-container">
+              Time left: {Math.floor(timeLeft / 60)}:
+              {("0" + (timeLeft % 60)).slice(-2)}
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   );

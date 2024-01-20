@@ -1,9 +1,19 @@
 .App {
   text-align: center;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+  .App {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .guessed-states {
@@ -14,13 +24,45 @@
 
 .guessed-states p {
   width: 20%;
+  padding-bottom: 0.4em;
+}
+
+@media screen and (max-width: 1260px) {
+  .guessed-states p {
+    width: 20%;
+    overflow: hidden;
+    font-size: 0.8em;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .guessed-states p {
+    width: 25%;
+    font-size: 0.5em;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .guessed-states p {
+    width: 20%;
+    font-size: 0.5em;
+  }
 }
 
 .app-body {
   display: flex;
   flex-direction: row;
   padding: 50px 20px;
-  max-width: 850px;
+  max-width: 50vw;
+}
+
+@media screen and (max-width: 768px) {
+  .app-body {
+    display: flex;
+    flex-direction: row;
+    padding: 0 0;
+    max-width: 80vw;
+  }
 }
 
 .score-panel {
@@ -61,13 +103,29 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  max-width: 800px;
-  height: 35vh;
+  max-width: 50vw;
+  flex-direction: column;
+  padding-left: 5vw;
+  padding-top: 5vh;
+}
+
+@media screen and (max-width: 768px) {
+  .app-map {
+    padding-left: 0;
+    padding-top: 5vh;
+    max-width: 70vw;
+  }
 }
 
 .game-description {
   height: 50px;
   font-weight: 200;
+}
+
+@media screen and (max-width: 900px) {
+  .game-description {
+    font-size: 12px;
+  }
 }
 
 .form-quiz input[type="text"] {

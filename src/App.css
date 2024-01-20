@@ -27,6 +27,12 @@ body {
   }
 }
 
+@media screen and (max-width: 768px) {
+  .main-column {
+    padding: 2% 3% 0% 3%;
+  }
+}
+
 .app-map,
 .app-body {
   width: 50%; /* Each takes up half the width */

@@ -135,11 +135,6 @@ function App() {
   const [revealClicked, setRevealClicked] = useState(false);
   const iconColor = timeLeft < 600 ? "red" : "black";
 
-  const handleDifficultyChange = (event) => {
-    setDifficulty(event.target.value);
-    setEasyMode(event.target.value === "Easy");
-  };
-
   const handleReveal = () => {
     if (!revealClicked) {
       setReveal(true);
@@ -278,15 +273,28 @@ function App() {
             test? In this high-states race against time, your goal is to list as
             many states as possible within the given time limit.{" "}
           </div>
-          <div className="toggle-easy">
-            <label>
-              Difficulty:
-              <select value={difficulty} onChange={handleDifficultyChange}>
-                <option value="Easy">Easy</option>
-                <option value="Normal">Normal</option>
-                <option value="Hard">Hard</option>
-              </select>
-            </label>
+          <div className="toggle-difficulty">
+            <button
+              className={difficulty === "Easy" ? "active" : ""}
+              onClick={() => {
+                setDifficulty("Easy");
+                setEasyMode(true);
+              }}
+            >
+              Easy
+            </button>
+            <button
+              className={difficulty === "Normal" ? "active" : ""}
+              onClick={() => setDifficulty("Normal")}
+            >
+              Normal
+            </button>
+            <button
+              className={difficulty === "Hard" ? "active" : ""}
+              onClick={() => setDifficulty("Hard")}
+            >
+              Hard
+            </button>
           </div>
           <p className="status-message">{message}</p>
         </div>

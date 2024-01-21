@@ -260,10 +260,25 @@ body {
   }
 }
 
-.toggle-easy {
+.toggle-difficulty {
   text-align: left;
   margin: 10px 0;
   color: rgb(101, 99, 99);
+}
+
+.toggle-difficulty button {
+  margin: 5px;
+  padding: 5px 10px;
+  border-radius: 10px;
+  border: none; /* Removes border */
+  box-shadow: none; /* Removes shadow for flat appearance */
+  background-color: #f7f7f7;
+  cursor: pointer;
+}
+
+.toggle-difficulty .active {
+  background-color: #4caf50;
+  color: white;
 }
 
 .progress-bar {

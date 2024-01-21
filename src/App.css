@@ -301,7 +301,7 @@ body {
 }
 
 .time-container {
-  width: 120px;
+  width: 65px;
 }
 
 @media screen and (max-width: 768px) {

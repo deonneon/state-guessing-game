@@ -258,7 +258,11 @@ function App() {
 
   return (
     <div className="App">
-      <div className="main-column">
+      <div
+        className={`main-column ${
+          keyboardVisible ? "main-column-adjusted" : ""
+        }`}
+      >
         <div className={`app-map ${keyboardVisible ? "app-map-fixed" : ""}`}>
           <MapChart
             guessedStates={guessedStates.map(

@@ -368,9 +368,7 @@ function App() {
           )}
         </div>
       </div>
-      <div
-        className={`input-panel ${keyboardVisible ? "input-panel-top" : ""}`}
-      >
+      <div className="input-panel">
         <form className="form-quiz" onSubmit={handleSubmit}>
           <div>
             <input

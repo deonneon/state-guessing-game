@@ -128,7 +128,7 @@ function App() {
   const [timeLeft, setTimeLeft] = useState(600);
   const [isRunning, setIsRunning] = useState(false);
   const [scores, setScores] = useState([]);
-  const [easyMode, setEasyMode] = useState(true);
+  const [easyMode, setEasyMode] = useState(false);
   const [reveal, setReveal] = useState(false);
 
   const [difficulty, setDifficulty] = useState("Normal");

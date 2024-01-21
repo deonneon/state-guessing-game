@@ -121,15 +121,19 @@ function App() {
   const [timeLeft, setTimeLeft] = useState(600);
   const [isRunning, setIsRunning] = useState(false);
   const [scores, setScores] = useState([]);
-  const [easyMode, setEasyMode] = useState(false);
+  const [easyMode, setEasyMode] = useState(true);
   const [reveal, setReveal] = useState(false);
+
+  const [difficulty, setDifficulty] = useState("Easy"); // Default value
+
+  // Update the function to handle difficulty change
+  const handleDifficultyChange = (event) => {
+    setDifficulty(event.target.value);
+    setEasyMode(event.target.value === "Easy");
+  };
 
   const handleReveal = () => {
     setReveal(true);
-  };
-
-  const handleEasyModeToggle = () => {
-    setEasyMode(!easyMode);
   };
 
   const handleChange = (event) => {
@@ -164,7 +168,8 @@ function App() {
             ...scores,
             {
               time: formatTime(600 - timeLeft),
-              states: guessedStates.length + 1,
+              states: guessedStates.length,
+              difficulty: difficulty, // Add difficulty level to the score object
             },
           ]);
         }
@@ -187,19 +192,27 @@ function App() {
       if (timeLeft === 0) {
         setMessage("Time is over!");
         // Using a functional update for 'setScores'
-        setScores((scores) => [
+        setScores([
           ...scores,
-          { time: formatTime(600 - timeLeft), states: guessedStates.length },
+          {
+            time: formatTime(600 - timeLeft),
+            states: guessedStates.length,
+            difficulty: difficulty, // Add difficulty level to the score object
+          },
         ]);
       }
     }
     return () => clearTimeout(id);
-  }, [timeLeft, isRunning, guessedStates.length]);
+  }, [timeLeft, isRunning, guessedStates.length, scores, difficulty]);
 
   const updateScores = () => {
     const newScores = [
       ...scores,
-      { time: formatTime(600 - timeLeft), states: guessedStates.length },
+      {
+        time: formatTime(600 - timeLeft),
+        states: guessedStates.length,
+        difficulty: difficulty,
+      },
     ];
     setScores(newScores);
     localStorage.setItem("scores", JSON.stringify(newScores));
@@ -255,12 +268,12 @@ function App() {
           </div>
           <div className="toggle-easy">
             <label>
-              <input
-                type="checkbox"
-                checked={easyMode}
-                onChange={handleEasyModeToggle}
-              />
-              Easy Mode
+              Difficulty:
+              <select value={difficulty} onChange={handleDifficultyChange}>
+                <option value="Easy">Easy</option>
+                <option value="Normal">Normal</option>
+                <option value="Hard">Hard</option>
+              </select>
             </label>
           </div>
           <p className="status-message">{message}</p>
@@ -286,17 +299,19 @@ function App() {
             </div>
           </div>
           <div className="score-panel">
-            <h3>Previous Scores</h3>
+            <h3>Records</h3>
             <div className="score-labels">
-              <p>Time Spent</p>
-              <p>States Guessed</p>
+              <p>Time</p>
+              <p># Guessed</p>
             </div>
-            {scores.map((score, index) => (
-              <div key={index} className="score-labels">
-                <span>{score.time}</span>
-                <span>{score.states}</span>
-              </div>
-            ))}
+            {scores
+              .filter((score) => score.difficulty === difficulty)
+              .map((score, index) => (
+                <div key={index} className="score-labels">
+                  <span>{score.time}</span>
+                  <span>{score.states}</span>
+                </div>
+              ))}
           </div>
         </div>
       </div>

@@ -364,3 +364,7 @@ body {
   padding: 5px;
   width: 75px;
 }
+
+.app-map {
+  flex-grow: 1;
+}

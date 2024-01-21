@@ -223,7 +223,7 @@ body {
   }
 
   .form-quiz input[type="text"] {
-    width: 90vw;
+    width: 89vw;
   }
 
   .form-quiz input[type="submit"],
@@ -231,6 +231,10 @@ body {
     height: 30px;
     margin-right: 5px;
     margin-left: 0;
+  }
+  .input-panel {
+    padding: 0;
+    justify-content: center;
   }
 }
 

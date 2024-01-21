@@ -134,6 +134,15 @@ function App() {
   const [difficulty, setDifficulty] = useState("Normal");
   const [revealClicked, setRevealClicked] = useState(false);
   const iconColor = timeLeft < 600 ? "red" : "black";
+  const [keyboardVisible, setKeyboardVisible] = useState(false);
+
+  const handleInputFocus = () => {
+    setKeyboardVisible(true);
+  };
+
+  const handleInputBlur = () => {
+    setKeyboardVisible(false);
+  };
 
   const handleReveal = () => {
     if (!revealClicked) {
@@ -298,7 +307,7 @@ function App() {
           <p className="status-message">{message}</p>
         </div>
         <div
-          className={`app-body ${
+          className={`app-body ${keyboardVisible ? "hide-content" : ""} ${
             difficulty === "Hard" ? "center-content" : ""
           }`}
         >
@@ -359,6 +368,8 @@ function App() {
               value={guess}
               placeholder="Enter a state to start"
               onChange={handleChange}
+              onFocus={handleInputFocus}
+              onBlur={handleInputBlur}
               autoComplete="off"
             />
           </div>

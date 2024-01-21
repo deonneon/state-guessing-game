@@ -59,6 +59,7 @@ body {
   align-items: center;
   justify-content: center;
   height: 20%; /* 20% of the viewport height */
+  transition: bottom 0.3s ease-in-out;
 }
 
 .status-message {
@@ -365,6 +366,7 @@ body {
   width: 75px;
 }
 
+
 @media screen and (max-width: 768px) {
   .input-panel-top {
     top: 20px;
@@ -373,4 +375,4 @@ body {
   .main-column-adjusted {
     margin-top: 25vh;
   }
-}
+

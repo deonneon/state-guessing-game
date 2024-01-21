@@ -280,34 +280,38 @@ function App() {
               <p>{50 - guessedStates.length} states left</p>
             </div>
           </div>
-          <div className="game-description">
-            State Sprint: Are you ready to put your US geography skills to the
-            test? In this high-states race against time, your goal is to list as
-            many states as possible within the given time limit.{" "}
-          </div>
-          <div className="toggle-difficulty">
-            <button
-              className={difficulty === "Easy" ? "active" : ""}
-              onClick={() => {
-                setDifficulty("Easy");
-                setEasyMode(true);
-              }}
-            >
-              Easy
-            </button>
-            <button
-              className={difficulty === "Normal" ? "active" : ""}
-              onClick={() => setDifficulty("Normal")}
-            >
-              Normal
-            </button>
-            <button
-              className={difficulty === "Hard" ? "active" : ""}
-              onClick={() => setDifficulty("Hard")}
-            >
-              Hard
-            </button>
-          </div>
+          {!keyboardVisible && (
+            <div className="game-description">
+              State Sprint: Are you ready to put your US geography skills to the
+              test? In this high-states race against time, your goal is to list
+              as many states as possible within the given time limit.{" "}
+            </div>
+          )}
+          {!keyboardVisible && (
+            <div className="toggle-difficulty">
+              <button
+                className={difficulty === "Easy" ? "active" : ""}
+                onClick={() => {
+                  setDifficulty("Easy");
+                  setEasyMode(true);
+                }}
+              >
+                Easy
+              </button>
+              <button
+                className={difficulty === "Normal" ? "active" : ""}
+                onClick={() => setDifficulty("Normal")}
+              >
+                Normal
+              </button>
+              <button
+                className={difficulty === "Hard" ? "active" : ""}
+                onClick={() => setDifficulty("Hard")}
+              >
+                Hard
+              </button>
+            </div>
+          )}
           <p className="status-message">{message}</p>
         </div>
         <div

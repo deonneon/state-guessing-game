@@ -259,7 +259,7 @@ function App() {
   return (
     <div className="App">
       <div className="main-column">
-        <div className="app-map">
+        <div className={`app-map ${keyboardVisible ? "app-map-fixed" : ""}`}>
           <MapChart
             guessedStates={guessedStates.map(
               (state) => stateAbbreviations[state]

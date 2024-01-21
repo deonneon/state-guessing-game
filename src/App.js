@@ -243,7 +243,6 @@ function App() {
     setGuessedStates([]);
     setGuess("");
     setMessage("");
-    setGuessedStates([]);
     setReveal(false);
     setRevealClicked(false);
   };
@@ -298,7 +297,11 @@ function App() {
           </div>
           <p className="status-message">{message}</p>
         </div>
-        <div className="app-body">
+        <div
+          className={`app-body ${
+            difficulty === "Hard" ? "center-content" : ""
+          }`}
+        >
           <div
             className={`app-content ${
               difficulty === "Hard" ? "hide-content" : ""
@@ -323,7 +326,11 @@ function App() {
             </div>
           </div>
           {scores.length > 0 && (
-            <div className="score-panel">
+            <div
+              className={`score-panel ${
+                difficulty === "Hard" ? "half-width" : ""
+              }`}
+            >
               <h3>Records</h3>
               <div className="score-labels">
                 <p>Time</p>
@@ -337,7 +344,9 @@ function App() {
                     <span>{score.states}</span>
                   </div>
                 ))}
-              <button onClick={clearLocalStorage}>Clear</button>
+              <button onClick={clearLocalStorage} className="clear-button">
+                Clear
+              </button>
             </div>
           )}
         </div>
@@ -357,19 +366,22 @@ function App() {
           <div className="form2">
             <div>
               <input type="submit" value="Submit" />
-              <button type="button" onClick={handleStop}>
-                Stop
-              </button>
-              <button type="button" onClick={handleReset}>
-                Reset
-              </button>
-              <button
-                type="button"
-                onClick={handleReveal}
-                disabled={revealClicked}
-              >
-                Reveal
-              </button>
+              {isRunning && (
+                <button type="button" onClick={handleStop}>
+                  Stop
+                </button>
+              )}
+
+              {(isRunning || revealClicked) && (
+                <button type="button" onClick={handleReset}>
+                  Reset
+                </button>
+              )}
+              {!revealClicked && (
+                <button type="button" onClick={handleReveal}>
+                  Reveal
+                </button>
+              )}
             </div>
             <div className="time-container">
               <FontAwesomeIcon icon={faClock} style={{ color: iconColor }} />

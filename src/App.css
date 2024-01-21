@@ -219,6 +219,7 @@ body {
   border: none; /* Removes border */
   box-shadow: none; /* Removes shadow for flat appearance */
   background: #e0e0e0;
+  margin-right: 3px;
 }
 
 .form-quiz input[type="submit"]:active,
@@ -344,4 +345,22 @@ body {
 
 .hide-content {
   display: none;
+}
+
+.half-width {
+  width: 200px;
+}
+
+.center-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.clear-button {
+  margin-top: 15px;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  width: 75px;
 }

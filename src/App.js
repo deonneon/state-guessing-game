@@ -150,10 +150,10 @@ function App() {
       if (
         !guessedStates
           .map((state) => state.toLowerCase())
-          .includes(guess.toLowerCase())
+          .includes(trimmedGuess.toLowerCase())
       ) {
         const correctState = states.find(
-          (state) => state.toLowerCase() === guess.toLowerCase()
+          (state) => state.toLowerCase() === trimmedGuess.toLowerCase()
         );
         setGuessedStates([...guessedStates, correctState]);
         setMessage("");

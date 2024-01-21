@@ -332,9 +332,9 @@ function App() {
           <p className="status-message">{message}</p>
         </div>
         <div
-          className={`app-body ${keyboardVisible ? "hide-content" : ""} ${
-            difficulty === "Hard" ? "center-content" : ""
-          }`}
+          className={`app-body ${
+            keyboardVisible ? "hide-content-keyboard" : ""
+          } ${difficulty === "Hard" ? "center-content" : ""}`}
         >
           <div
             className={`app-content ${

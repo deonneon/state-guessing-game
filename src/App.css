@@ -371,6 +371,9 @@ body {
 }
 
 @media screen and (max-width: 768px) {
+  .hide-content-keyboard {
+    display: none;
+  }
   .main-column-adjusted {
     margin-top: 35vh;
   }

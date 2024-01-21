@@ -263,7 +263,7 @@ function App() {
           keyboardVisible ? "main-column-adjusted" : ""
         }`}
       >
-        <div className={`app-map ${keyboardVisible ? "app-map-fixed" : ""}`}>
+        <div className="app-map">
           <MapChart
             guessedStates={guessedStates.map(
               (state) => stateAbbreviations[state]
@@ -369,9 +369,7 @@ function App() {
         </div>
       </div>
       <div
-        className={`input-panel ${
-          keyboardVisible ? "input-panel-adjusted" : ""
-        }`}
+        className={`input-panel ${keyboardVisible ? "input-panel-top" : ""}`}
       >
         <form className="form-quiz" onSubmit={handleSubmit}>
           <div>

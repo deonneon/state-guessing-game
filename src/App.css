@@ -366,24 +366,13 @@ body {
   width: 75px;
 }
 
-.app-map {
-  flex-grow: 1;
-}
 
-.app-map-fixed {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 50vh; /* Adjust height as needed */
-  z-index: 10; /* Ensure it stays on top */
-}
+@media screen and (max-width: 768px) {
+  .input-panel-top {
+    top: 20px;
+  }
 
-.main-column-adjusted {
-  height: 50vh; /* Sets the height to 50% of the viewport height */
-}
+  .main-column-adjusted {
+    margin-top: 25vh;
+  }
 
-.input-panel-adjusted {
-  position: static; /* Resets to default positioning */
-  /* Remove 'bottom: 0' and any other fixed positioning styles here */
-}

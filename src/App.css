@@ -377,3 +377,7 @@ body {
   height: 50vh; /* Adjust height as needed */
   z-index: 10; /* Ensure it stays on top */
 }
+
+.main-column-adjusted {
+  height: 50vh; /* Sets the height to 50% of the viewport height */
+}

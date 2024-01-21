@@ -124,9 +124,8 @@ function App() {
   const [easyMode, setEasyMode] = useState(true);
   const [reveal, setReveal] = useState(false);
 
-  const [difficulty, setDifficulty] = useState("Easy"); // Default value
+  const [difficulty, setDifficulty] = useState("Normal");
 
-  // Update the function to handle difficulty change
   const handleDifficultyChange = (event) => {
     setDifficulty(event.target.value);
     setEasyMode(event.target.value === "Easy");

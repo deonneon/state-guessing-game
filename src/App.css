@@ -214,6 +214,15 @@ body {
 .form-quiz button {
   height: 30px;
   margin-left: 5px;
+  border-radius: 7px; /* Makes edges flat */
+  border: none; /* Removes border */
+  box-shadow: none; /* Removes shadow for flat appearance */
+  background: #e0e0e0;
+}
+
+.form-quiz input[type="submit"]:active,
+.form-quiz button:active {
+  background: gray; /* Darker color for clicked state */
 }
 
 @media screen and (max-width: 900px) {

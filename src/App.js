@@ -368,7 +368,11 @@ function App() {
           )}
         </div>
       </div>
-      <div className="input-panel">
+      <div
+        className={`input-panel ${
+          keyboardVisible ? "input-panel-adjusted" : ""
+        }`}
+      >
         <form className="form-quiz" onSubmit={handleSubmit}>
           <div>
             <input

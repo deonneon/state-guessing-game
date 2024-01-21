@@ -27,6 +27,12 @@ body {
   }
 }
 
+@media screen and (max-width: 768px) {
+  .main-column {
+    padding: 2% 3% 0% 3%;
+  }
+}
+
 .app-map,
 .app-body {
   width: 50%; /* Each takes up half the width */
@@ -217,7 +223,7 @@ body {
   }
 
   .form-quiz input[type="text"] {
-    width: 90vw;
+    width: 89vw;
   }
 
   .form-quiz input[type="submit"],
@@ -225,6 +231,10 @@ body {
     height: 30px;
     margin-right: 5px;
     margin-left: 0;
+  }
+  .input-panel {
+    padding: 0;
+    justify-content: center;
   }
 }
 
@@ -270,4 +280,27 @@ body {
 
 .time-container {
   width: 120px;
+}
+
+@media screen and (max-width: 768px) {
+  .App {
+    max-height: 100vh; /* Fix the total height of the app */
+    overflow: hidden; /* Prevent scrolling on the app level */
+  }
+
+  .main-column {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Full height of the app */
+  }
+
+  .app-map {
+    /* Adjust the height as needed */
+    flex: 0 0 auto; /* Flex item that doesn't grow or shrink */
+  }
+
+  .app-body {
+    flex: 1; /* Takes up the remaining space */
+    overflow-y: auto; /* Enable vertical scrolling */
+  }
 }

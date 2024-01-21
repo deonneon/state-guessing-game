@@ -31,6 +31,10 @@ body {
   .main-column {
     padding: 2% 3% 0% 3%;
   }
+
+  .App {
+    height: calc(var(--vh, 1vh) * 100);
+  }
 }
 
 .app-map,

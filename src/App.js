@@ -136,6 +136,23 @@ function App() {
   const iconColor = timeLeft < 600 ? "red" : "black";
   const [keyboardVisible, setKeyboardVisible] = useState(false);
 
+  const setFullHeight = () => {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
+  };
+
+  useEffect(() => {
+    setFullHeight();
+    window.addEventListener("resize", setFullHeight);
+    window.addEventListener("orientationchange", setFullHeight);
+
+    // Cleanup
+    return () => {
+      window.removeEventListener("resize", setFullHeight);
+      window.removeEventListener("orientationchange", setFullHeight);
+    };
+  }, []);
+
   const handleInputFocus = () => {
     setKeyboardVisible(true);
   };

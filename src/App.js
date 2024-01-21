@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import MapChart from "./MapChart";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClock } from "@fortawesome/free-solid-svg-icons";
 
 const stateAbbreviations = {
   Alabama: "AL",
@@ -114,6 +116,11 @@ function formatTime(seconds) {
   return `${minutes}:${formattedSeconds}`;
 }
 
+function clearLocalStorage() {
+  localStorage.clear();
+  console.log("Local Storage cleared.");
+}
+
 function App() {
   const [guess, setGuess] = useState("");
   const [guessedStates, setGuessedStates] = useState([]);
@@ -124,12 +131,15 @@ function App() {
   const [easyMode, setEasyMode] = useState(false);
   const [reveal, setReveal] = useState(false);
 
-  const handleReveal = () => {
-    setReveal(true);
-  };
+  const [difficulty, setDifficulty] = useState("Normal");
+  const [revealClicked, setRevealClicked] = useState(false);
+  const iconColor = timeLeft < 600 ? "red" : "black";
 
-  const handleEasyModeToggle = () => {
-    setEasyMode(!easyMode);
+  const handleReveal = () => {
+    if (!revealClicked) {
+      setReveal(true);
+      setRevealClicked(true);
+    }
   };
 
   const handleChange = (event) => {
@@ -164,7 +174,8 @@ function App() {
             ...scores,
             {
               time: formatTime(600 - timeLeft),
-              states: guessedStates.length + 1,
+              states: guessedStates.length,
+              difficulty: difficulty, // Add difficulty level to the score object
             },
           ]);
         }
@@ -187,19 +198,27 @@ function App() {
       if (timeLeft === 0) {
         setMessage("Time is over!");
         // Using a functional update for 'setScores'
-        setScores((scores) => [
+        setScores([
           ...scores,
-          { time: formatTime(600 - timeLeft), states: guessedStates.length },
+          {
+            time: formatTime(600 - timeLeft),
+            states: guessedStates.length,
+            difficulty: difficulty, // Add difficulty level to the score object
+          },
         ]);
       }
     }
     return () => clearTimeout(id);
-  }, [timeLeft, isRunning, guessedStates.length]);
+  }, [timeLeft, isRunning, guessedStates.length, scores, difficulty]);
 
   const updateScores = () => {
     const newScores = [
       ...scores,
-      { time: formatTime(600 - timeLeft), states: guessedStates.length },
+      {
+        time: formatTime(600 - timeLeft),
+        states: guessedStates.length,
+        difficulty: difficulty,
+      },
     ];
     setScores(newScores);
     localStorage.setItem("scores", JSON.stringify(newScores));
@@ -226,6 +245,7 @@ function App() {
     setMessage("");
     setGuessedStates([]);
     setReveal(false);
+    setRevealClicked(false);
   };
 
   return (
@@ -253,20 +273,37 @@ function App() {
             test? In this high-states race against time, your goal is to list as
             many states as possible within the given time limit.{" "}
           </div>
-          <div className="toggle-easy">
-            <label>
-              <input
-                type="checkbox"
-                checked={easyMode}
-                onChange={handleEasyModeToggle}
-              />
-              Easy Mode
-            </label>
+          <div className="toggle-difficulty">
+            <button
+              className={difficulty === "Easy" ? "active" : ""}
+              onClick={() => {
+                setDifficulty("Easy");
+                setEasyMode(true);
+              }}
+            >
+              Easy
+            </button>
+            <button
+              className={difficulty === "Normal" ? "active" : ""}
+              onClick={() => setDifficulty("Normal")}
+            >
+              Normal
+            </button>
+            <button
+              className={difficulty === "Hard" ? "active" : ""}
+              onClick={() => setDifficulty("Hard")}
+            >
+              Hard
+            </button>
           </div>
           <p className="status-message">{message}</p>
         </div>
         <div className="app-body">
-          <div className="app-content">
+          <div
+            className={`app-content ${
+              difficulty === "Hard" ? "hide-content" : ""
+            }`}
+          >
             <div className="guessed-states">
               {states.map((state, index) => {
                 const isGuessed = guessedStates.includes(state);
@@ -285,19 +322,24 @@ function App() {
               })}
             </div>
           </div>
-          <div className="score-panel">
-            <h3>Previous Scores</h3>
-            <div className="score-labels">
-              <p>Time Spent</p>
-              <p>States Guessed</p>
-            </div>
-            {scores.map((score, index) => (
-              <div key={index} className="score-labels">
-                <span>{score.time}</span>
-                <span>{score.states}</span>
+          {scores.length > 0 && (
+            <div className="score-panel">
+              <h3>Records</h3>
+              <div className="score-labels">
+                <p>Time</p>
+                <p># Guessed</p>
               </div>
-            ))}
-          </div>
+              {scores
+                .filter((score) => score.difficulty === difficulty)
+                .map((score, index) => (
+                  <div key={index} className="score-labels">
+                    <span>{score.time}</span>
+                    <span>{score.states}</span>
+                  </div>
+                ))}
+              {/* <button onClick={clearLocalStorage}>Clear</button> */}
+            </div>
+          )}
         </div>
       </div>
       <div className="input-panel">
@@ -321,13 +363,18 @@ function App() {
               <button type="button" onClick={handleReset}>
                 Reset
               </button>
-              <button type="button" onClick={handleReveal}>
+              <button
+                type="button"
+                onClick={handleReveal}
+                disabled={revealClicked}
+              >
                 Reveal
               </button>
             </div>
             <div className="time-container">
-              Time left: {Math.floor(timeLeft / 60)}:
-              {("0" + (timeLeft % 60)).slice(-2)}
+              <FontAwesomeIcon icon={faClock} style={{ color: iconColor }} />
+              <span> </span>
+              {Math.floor(timeLeft / 60)}:{("0" + (timeLeft % 60)).slice(-2)}
             </div>
           </div>
         </form>

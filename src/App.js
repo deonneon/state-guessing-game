@@ -337,7 +337,7 @@ function App() {
                     <span>{score.states}</span>
                   </div>
                 ))}
-              {/* <button onClick={clearLocalStorage}>Clear</button> */}
+              <button onClick={clearLocalStorage}>Clear</button>
             </div>
           )}
         </div>

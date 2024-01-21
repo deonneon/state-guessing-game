@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import MapChart from "./MapChart";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClock } from "@fortawesome/free-solid-svg-icons";
 
 const stateAbbreviations = {
   Alabama: "AL",
@@ -114,6 +116,11 @@ function formatTime(seconds) {
   return `${minutes}:${formattedSeconds}`;
 }
 
+function clearLocalStorage() {
+  localStorage.clear();
+  console.log("Local Storage cleared.");
+}
+
 function App() {
   const [guess, setGuess] = useState("");
   const [guessedStates, setGuessedStates] = useState([]);
@@ -125,6 +132,8 @@ function App() {
   const [reveal, setReveal] = useState(false);
 
   const [difficulty, setDifficulty] = useState("Normal");
+  const [revealClicked, setRevealClicked] = useState(false);
+  const iconColor = timeLeft < 600 ? "red" : "black";
 
   const handleDifficultyChange = (event) => {
     setDifficulty(event.target.value);
@@ -132,7 +141,10 @@ function App() {
   };
 
   const handleReveal = () => {
-    setReveal(true);
+    if (!revealClicked) {
+      setReveal(true);
+      setRevealClicked(true);
+    }
   };
 
   const handleChange = (event) => {
@@ -238,6 +250,7 @@ function App() {
     setMessage("");
     setGuessedStates([]);
     setReveal(false);
+    setRevealClicked(false);
   };
 
   return (
@@ -301,21 +314,24 @@ function App() {
               })}
             </div>
           </div>
-          <div className="score-panel">
-            <h3>Records</h3>
-            <div className="score-labels">
-              <p>Time</p>
-              <p># Guessed</p>
+          {scores.length > 0 && (
+            <div className="score-panel">
+              <h3>Records</h3>
+              <div className="score-labels">
+                <p>Time</p>
+                <p># Guessed</p>
+              </div>
+              {scores
+                .filter((score) => score.difficulty === difficulty)
+                .map((score, index) => (
+                  <div key={index} className="score-labels">
+                    <span>{score.time}</span>
+                    <span>{score.states}</span>
+                  </div>
+                ))}
+              <button onClick={clearLocalStorage}>Clear</button>
             </div>
-            {scores
-              .filter((score) => score.difficulty === difficulty)
-              .map((score, index) => (
-                <div key={index} className="score-labels">
-                  <span>{score.time}</span>
-                  <span>{score.states}</span>
-                </div>
-              ))}
-          </div>
+          )}
         </div>
       </div>
       <div className="input-panel">
@@ -339,13 +355,18 @@ function App() {
               <button type="button" onClick={handleReset}>
                 Reset
               </button>
-              <button type="button" onClick={handleReveal}>
+              <button
+                type="button"
+                onClick={handleReveal}
+                disabled={revealClicked}
+              >
                 Reveal
               </button>
             </div>
             <div className="time-container">
-              Time left: {Math.floor(timeLeft / 60)}:
-              {("0" + (timeLeft % 60)).slice(-2)}
+              <FontAwesomeIcon icon={faClock} style={{ color: iconColor }} />
+              <span> </span>
+              {Math.floor(timeLeft / 60)}:{("0" + (timeLeft % 60)).slice(-2)}
             </div>
           </div>
         </form>

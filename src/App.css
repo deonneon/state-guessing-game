@@ -366,7 +366,6 @@ body {
   width: 75px;
 }
 
-
 @media screen and (max-width: 768px) {
   .input-panel-top {
     top: 20px;
@@ -375,4 +374,4 @@ body {
   .main-column-adjusted {
     margin-top: 25vh;
   }
-
+}

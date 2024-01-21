@@ -316,3 +316,7 @@ body {
     overflow-y: auto; /* Enable vertical scrolling */
   }
 }
+
+.hide-content {
+  display: none;
+}

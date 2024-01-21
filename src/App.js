@@ -279,7 +279,11 @@ function App() {
           <p className="status-message">{message}</p>
         </div>
         <div className="app-body">
-          <div className="app-content">
+          <div
+            className={`app-content ${
+              difficulty === "Hard" ? "hide-content" : ""
+            }`}
+          >
             <div className="guessed-states">
               {states.map((state, index) => {
                 const isGuessed = guessedStates.includes(state);

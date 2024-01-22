@@ -317,13 +317,19 @@ function App() {
               </button>
               <button
                 className={difficulty === "Normal" ? "active" : ""}
-                onClick={() => setDifficulty("Normal")}
+                onClick={() => {
+                  setDifficulty("Normal");
+                  setEasyMode(false);
+                }}
               >
                 Normal
               </button>
               <button
                 className={difficulty === "Hard" ? "active" : ""}
-                onClick={() => setDifficulty("Hard")}
+                onClick={() => {
+                  setDifficulty("Hard");
+                  setEasyMode(false);
+                }}
               >
                 Hard
               </button>

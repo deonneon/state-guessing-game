@@ -116,11 +116,6 @@ function formatTime(seconds) {
   return `${minutes}:${formattedSeconds}`;
 }
 
-function clearLocalStorage() {
-  localStorage.clear();
-  console.log("Local Storage cleared.");
-}
-
 function App() {
   const [guess, setGuess] = useState("");
   const [guessedStates, setGuessedStates] = useState([]);
@@ -135,6 +130,12 @@ function App() {
   const [revealClicked, setRevealClicked] = useState(false);
   const iconColor = timeLeft < 600 ? "red" : "black";
   const [keyboardVisible, setKeyboardVisible] = useState(false);
+
+  function clearLocalStorage() {
+    localStorage.clear();
+    console.log("Local Storage cleared.");
+    setScores([]); // Reset the scores state to an empty array
+  }
 
   const setFullHeight = () => {
     const vh = window.innerHeight * 0.01;

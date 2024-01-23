@@ -28,7 +28,7 @@ export const MapChart = ({ guessedStates, easyMode, reveal }) => {
   const guessedSet = new Set(guessedStates);
 
   return (
-    <ComposableMap projection="geoAlbersUsa">
+    <ComposableMap projection="geoAlbersUsa" style={{ pointerEvents: "none" }}>
       <Geographies geography={geoUrl}>
         {({ geographies }) => (
           <>

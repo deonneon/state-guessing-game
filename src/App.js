@@ -191,19 +191,19 @@ function App() {
         const correctState = states.find(
           (state) => state.toLowerCase() === trimmedGuess.toLowerCase()
         );
-        setGuessedStates([...guessedStates, correctState]);
+        const newGuessedStates = [...guessedStates, correctState];
+        setGuessedStates(newGuessedStates);
         setMessage("");
-        if (guessedStates.length + 1 === 50) {
+
+        if (newGuessedStates.length === 50) {
           setIsRunning(false);
           setMessage("Congratulations! You have guessed all states!");
-          setScores([
-            ...scores,
-            {
-              time: formatTime(600 - timeLeft),
-              states: guessedStates.length,
-              difficulty: difficulty, // Add difficulty level to the score object
-            },
-          ]);
+          const newScore = {
+            time: formatTime(600 - timeLeft),
+            states: newGuessedStates.length,
+            difficulty: difficulty,
+          };
+          setScores([...scores, newScore]);
         }
       } else {
         setMessage("This state has already been guessed");

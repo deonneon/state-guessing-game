@@ -351,16 +351,16 @@ function App() {
             <div className="guessed-states">
               {states.map((state, index) => {
                 const isGuessed = guessedStates.includes(state);
-                const displayText = reveal
-                  ? state
-                  : isGuessed
-                  ? state
-                  : "_________";
+                const displayText = reveal || isGuessed ? state : null;
+                const displayBlanks =
+                  !reveal && !isGuessed ? "_________" : null;
                 const displayColor = reveal && !isGuessed ? "red" : "black";
+                const blankColor = "lightgray";
 
                 return (
                   <p key={index} style={{ color: displayColor }}>
                     {displayText}
+                    <span style={{ color: blankColor }}>{displayBlanks}</span>
                   </p>
                 );
               })}
